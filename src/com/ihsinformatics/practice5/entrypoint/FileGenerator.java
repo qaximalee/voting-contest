@@ -73,10 +73,22 @@ public class FileGenerator {
 
 		int voteDataSize = 5 + voteData.size() - voteData.size();
 
+		int temp = 0;
 		for (int i = 0; i < voteDataSize; i++) {
 			String key = Collections.max(voteData.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
 			try {
-				writer.write((i + 1) + ". " + key + "\t" + voteData.get(key) + "\n");
+				if (i == 0) {
+					temp = voteData.get(key);
+					writer.write((i + 1) + ". " + key + "\t" + voteData.get(key) + "\n");
+				} else {
+					if (temp == voteData.get(key)) {
+						writer.write("   " + key + "\t" + voteData.get(key) + "\n");
+						temp = voteData.get(key);
+					} else {
+						writer.write((i + 1) + ". " + key + "\t" + voteData.get(key) + "\n");
+						temp = voteData.get(key);
+					}
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

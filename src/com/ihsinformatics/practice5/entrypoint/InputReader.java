@@ -21,7 +21,7 @@ public class InputReader {
 
 	List<Map<String, Integer>> votingData = new ArrayList<>();
 	List<String> countries = new ArrayList<>();
-	boolean lifeButton = true;
+	boolean lifeCheck = true;
 
 	/*
 	 * This method will run first in the program which will return all data from all
@@ -61,9 +61,10 @@ public class InputReader {
 					if (str[0].equals(str[1])) {
 						if (countryVote != 0) {
 							System.out.println("========================================");
-							System.out.println("| " + str[0] + " can't give vote to his country. |");
+							System.out.println("| " + str[0] + " can't give vote to own country. |");
 							System.out.println("========================================");
-							lifeButton = false;
+							lifeCheck = false;
+							break;
 						}
 					}
 					totalVote.add(countryVote);
@@ -74,10 +75,38 @@ public class InputReader {
 				while (totalVote.contains(new Integer(0))) {
 					totalVote.remove(new Integer(0));
 				}
-				if (totalVote.size() > 5) {
-					System.out.println("==================================================");
-					System.out.println("|  You can't give vote to more than 5 countries. |");
-					System.out.println("==================================================");
+				if (totalVote.size() == 5) {
+					for (int value : totalVote) {
+						if ((value >= 1 && value <= 4) || value == 6) {
+							List<Integer> checkForDuplicateValue = new ArrayList<>();
+							for (int voteValue : totalVote) {
+								if (!checkForDuplicateValue.contains(voteValue))
+									checkForDuplicateValue.add(voteValue);
+							}
+							if (checkForDuplicateValue.size() != 5) {
+								System.out.println("===================================================");
+								System.out.println("|  You can't give same votes to multiple Country |");
+								System.out.println("===================================================");
+								lifeCheck = false;
+								break;
+							}
+							/*
+							 * lifeCheck = true; break;
+							 */
+						} else {
+							System.out.println("===================================================");
+							System.out.println("|  You have to give same vote as required in document |");
+							System.out.println("===================================================");
+							lifeCheck = false;
+							break;
+						}
+					}
+				} else {
+					System.out.println("==================================");
+					System.out.println("|  You have to vote 5 countries. |");
+					System.out.println("==================================");
+					lifeCheck = false;
+					break;
 				}
 				votingData.add(voteData);
 				countries.add(juryCountry);

@@ -16,7 +16,7 @@ public class EntryPoint {
 		List<Map<String, Integer>> votingTable = getInputFromFiles.getVotingData();
 		String[] juryCountry = getInputFromFiles.getCountries()
 				.toArray(new String[getInputFromFiles.getCountries().size()]);
-		if (getInputFromFiles.lifeButton) {
+		if (getInputFromFiles.lifeCheck) {
 			int[] votingResults = new int[juryCountry.length];
 
 			// Printing All Data On Console
