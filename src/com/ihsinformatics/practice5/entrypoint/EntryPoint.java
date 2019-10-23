@@ -44,22 +44,34 @@ public class EntryPoint {
 					.getKey();
 
 			generator.generateResultFile(key, gettingResultsInMap, votingTable, juryCountry);
-		} else {
-			System.out.println("THERE IS SOMETHING WRONG");
 		}
 	}
 
+	/*
+	 * This method provides the total results of the whole contesting countries
+	 * 
+	 * @param List<Map<String, Integer>> it is the whole voting data.
+	 * 
+	 * @param String[] it has the whole jury countries
+	 */
 	public static int[] getResults(List<Map<String, Integer>> voteData, String[] countries) {
 		int[] results = new int[countries.length];
 
 		for (int i = 0; i < voteData.size(); i++) {
-			results[i] = voteResultForSpecificCountry(voteData, countries[i]);
+			results[i] = totalVoteForSpecificCountry(voteData, countries[i]);
 		}
 
 		return results;
 	}
 
-	private static int voteResultForSpecificCountry(List<Map<String, Integer>> contestentCountry, String country) {
+	/*
+	 * This method return total value of specific country
+	 * 
+	 * @param List<Map<String, Integer>> it is the total voting data.
+	 * 
+	 * @param String the country name for which the total no is returning
+	 */
+	private static int totalVoteForSpecificCountry(List<Map<String, Integer>> contestentCountry, String country) {
 		// TODO Auto-generated method stub
 		int result = 0;
 

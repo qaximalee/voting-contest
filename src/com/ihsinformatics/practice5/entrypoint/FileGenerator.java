@@ -71,6 +71,7 @@ public class FileGenerator {
 	private void printRanking(Map<String, Integer> voteData, BufferedWriter writer) {
 		// TODO Auto-generated method stub
 
+		// for printing the top five countries
 		int voteDataSize = 5 + voteData.size() - voteData.size();
 
 		int temp = 0;

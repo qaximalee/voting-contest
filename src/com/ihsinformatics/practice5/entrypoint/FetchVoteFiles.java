@@ -15,7 +15,7 @@ public class FetchVoteFiles {
 	 * 
 	 * @param String directory path in which the file is present
 	 * 
-	 * @param String extension of specific file type (i.e .java)
+	 * @param String extension of specific file type (i.e .txt)
 	 */
 	public List<String> fetchAllFiles(String directoryPath, String extension) {
 

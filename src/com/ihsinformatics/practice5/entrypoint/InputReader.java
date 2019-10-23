@@ -75,14 +75,23 @@ public class InputReader {
 				while (totalVote.contains(new Integer(0))) {
 					totalVote.remove(new Integer(0));
 				}
+
+				// Checking whether the list has only five votes
 				if (totalVote.size() == 5) {
 					for (int value : totalVote) {
+
+						// Values Should be fulfil below conditions
 						if ((value >= 1 && value <= 4) || value == 6) {
+
+							// This list is for checking whether the jury country give same vote to more
+							// than one country
 							List<Integer> checkForDuplicateValue = new ArrayList<>();
 							for (int voteValue : totalVote) {
 								if (!checkForDuplicateValue.contains(voteValue))
 									checkForDuplicateValue.add(voteValue);
 							}
+
+							// Now checking above list that if it hasn't 5 votes
 							if (checkForDuplicateValue.size() != 5) {
 								System.out.println("===================================================");
 								System.out.println("|  You can't give same votes to multiple Country |");
@@ -90,9 +99,6 @@ public class InputReader {
 								lifeCheck = false;
 								break;
 							}
-							/*
-							 * lifeCheck = true; break;
-							 */
 						} else {
 							System.out.println("===================================================");
 							System.out.println("|  You have to give same vote as required in document |");
